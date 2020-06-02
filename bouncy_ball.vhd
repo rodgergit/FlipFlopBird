@@ -44,26 +44,33 @@ Move_Ball: process (vert_sync, mouse1)
 begin
 	-- Move ball once every vertical sync
 	if (rising_edge(vert_sync)) then
+	
+	
+
+	
 		
 		-- Bounce off top or bottom of the screen
 		if ( ('0' & ball_y_pos >= CONV_STD_LOGIC_VECTOR(479,10) - size) ) then
-			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(2,10);
+			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(0,10);
 		elsif (ball_y_pos <= size) then -- top
 			ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
 		end if;
 		
-		
 		--Ball goes up
 		if (mouse1 = '1') then
-			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(4,10);
+			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(2,10);
 		end if;
+
 		
 		-- Compute next ball Y position
-		if (ball_y_pos <= size and mouse1 = '1') then
-			ball_y_pos <= CONV_STD_LOGIC_VECTOR(16,10);
-		else
-			ball_y_pos <= ball_y_pos + ball_y_motion;
-		end if;
+		--if (ball_y_pos <= size and mouse1 = '1') then
+			--ball_y_pos <= CONV_STD_LOGIC_VECTOR(16,10);
+		--else
+			--ball_y_pos <= ball_y_pos + ball_y_motion;
+		--end if;
+		
+		ball_y_pos <= ball_y_pos + ball_y_motion;
+		
 	end if;
 end process Move_Ball;
 
