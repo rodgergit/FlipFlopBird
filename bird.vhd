@@ -4,14 +4,14 @@ USE  IEEE.STD_LOGIC_ARITH.all;
 USE  IEEE.STD_LOGIC_SIGNED.all;
 
 
-ENTITY bouncy_ball IS
+ENTITY bird IS
 	PORT
 		(SIGNAL pb1, pb2, mouse1, clk, vert_sync	: IN std_logic;
         SIGNAL pixel_row, pixel_column		: IN std_logic_vector(9 DOWNTO 0);
 		SIGNAL red, green, blue 			: OUT std_logic);		
-END bouncy_ball;
+END bird;
 
-architecture behavior of bouncy_ball is
+architecture behavior of bird is
 
 SIGNAL ball_on					: std_logic;
 SIGNAL size 					: std_logic_vector(9 DOWNTO 0);  
@@ -47,7 +47,7 @@ begin
 		
 		-- Flap logic
 		if (mouse1 = '1') then
-			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(2,10);
+			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(3,10);
 		else
 			-- Falling logic
 			ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
@@ -60,7 +60,7 @@ begin
 		
 		-- Caps the bird to the bottom of the screen
 		if ( ('0' & ball_y_pos >= CONV_STD_LOGIC_VECTOR(479,10) - size) ) then
-			ball_y_motion <= -CONV_STD_LOGIC_VECbouncy_ball.vhdTOR(2,10);
+			ball_y_motion <= -CONV_STD_LOGIC_VECTOR(2,10);
 		end if;
 		
 		ball_y_pos <= ball_y_pos + ball_y_motion;

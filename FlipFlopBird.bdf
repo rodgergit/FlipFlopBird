@@ -23,7 +23,7 @@ applicable agreement for further details.
 	(input)
 	(rect 152 160 320 176)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "clk" (rect 5 0 20 12)(font "Arial" ))
+	(text "clk" (rect 5 0 19 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -438,8 +438,8 @@ applicable agreement for further details.
 )
 (symbol
 	(rect 480 296 672 472)
-	(text "bouncy_ball" (rect 5 0 64 12)(font "Arial" ))
-	(text "inst6" (rect 8 160 31 172)(font "Arial" ))
+	(text "bird" (rect 5 0 22 12)(font "Arial" ))
+	(text "inst1" (rect 8 160 31 172)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -493,21 +493,21 @@ applicable agreement for further details.
 		(pt 192 32)
 		(output)
 		(text "red" (rect 0 0 15 12)(font "Arial" ))
-		(text "red" (rect 159 27 171 39)(font "Arial" ))
+		(text "red" (rect 159 27 174 39)(font "Arial" ))
 		(line (pt 192 32)(pt 176 32))
 	)
 	(port
 		(pt 192 48)
 		(output)
 		(text "green" (rect 0 0 27 12)(font "Arial" ))
-		(text "green" (rect 149 43 171 55)(font "Arial" ))
+		(text "green" (rect 149 43 176 55)(font "Arial" ))
 		(line (pt 192 48)(pt 176 48))
 	)
 	(port
 		(pt 192 64)
 		(output)
 		(text "blue" (rect 0 0 20 12)(font "Arial" ))
-		(text "blue" (rect 155 59 171 71)(font "Arial" ))
+		(text "blue" (rect 155 59 175 71)(font "Arial" ))
 		(line (pt 192 64)(pt 176 64))
 	)
 	(drawing
