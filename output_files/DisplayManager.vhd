@@ -7,6 +7,7 @@ entity DisplayManager is
 	clk : in std_logic;
 	bird_on : in std_logic;
 	pipe_on : in std_logic;
+	powerUp_on : in std_logic;
 	r, g, b : out std_logic);
 end entity DisplayManager;
 
@@ -30,6 +31,10 @@ begin
 		g <= '1';
 		b <= '0';
 		
+	elsif powerUp_on = '1' then
+		r <= '0';
+		g <= '0';
+		b <= '1';
 	else
 		r <= '0';
 		g <= '1';

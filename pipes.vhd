@@ -9,7 +9,7 @@ ENTITY pipes IS
 		(SIGNAL clk, vert_sync								: IN std_logic;
        SIGNAL pixel_row, pixel_column					: IN std_logic_vector(9 DOWNTO 0);
 		 SIGNAL random_num 									: IN std_logic_vector(2 downto 0);
-		 SIGNAL red, green, blue, pipe_on				: OUT std_logic);		
+		 SIGNAL red, green, blue, pipe_on, powerUp_on				: OUT std_logic);		
 END pipes;
 
 architecture behavior of pipes is
@@ -38,7 +38,7 @@ signal powerUp_x_pos       : std_logic_vector(10 downto 0);
 
 
 
-signal powerUp_on : std_logic;
+signal t_powerUp_on : std_logic;
 
 
 signal powerUp_sizeOne_x : std_logic_vector(10 downto 0); 
@@ -101,8 +101,8 @@ begin
 
 end process gapGen ;
 ------------------------------------------------------------
-
-powerUp_on <= '1' when (((('0' & (powerUp_y_pos - powerUp_sizeThree_y) <= '0' & pixel_row) and ('0' & pixel_row <= '0' & powerUp_y_pos )) and 
+powerUp_on <= t_powerUp_on;
+t_powerUp_on <= '1' when (((('0' & (powerUp_y_pos - powerUp_sizeThree_y) <= '0' & pixel_row) and ('0' & pixel_row <= '0' & powerUp_y_pos )) and 
 								(('0' & (powerUp_x_pos - powerUp_sizeTwo_x) <= '0' & pixel_column) and ('0' & pixel_column <= '0' & (powerUp_x_pos - powerUp_sizeOne_x)))) or 
 							((('0' & powerUp_y_pos - powerUp_sizetwo_y <= '0' & pixel_row) and ('0' & pixel_row <= '0' & (powerup_y_pos - powerUp_sizeOne_y))) and 
 							  (('0' & (powerUp_x_pos - powerUp_sizeThree_x) <= '0' & pixel_column) and ('0' & pixel_column <= '0' & powerUp_x_pos))))	
@@ -126,9 +126,9 @@ pipes_on <= '1' when ((('0' & gap_x_pos - gap_size_x <= '0' & pixel_column) and 
 -- Colours for pixel data on video signal
 -- Changing the background and ball colour by pushbuttons
 
-Red <= (not '0') and ( not pipes_on) and (powerUp_on); 
-Green <= '1' and (not powerUp_on) ; --pb1
-Blue <= (not pipes_on) and (not powerUp_on) ; 
+Red <= (not '0') and ( not pipes_on) and (t_powerUp_on); 
+Green <= '1' and (not t_powerUp_on) ; --pb1
+Blue <= (not pipes_on) and (not t_powerUp_on) ; 
 
 powerUpMovement: process (vert_sync, powerUp_x_pos, gap_x_motion, pipes_passed)
 
