@@ -91,7 +91,6 @@ set_location_assignment PIN_E4 -to sw8
 set_location_assignment PIN_D2 -to sw9
 set_location_assignment PIN_H6 -to blue
 set_global_assignment -name VHDL_FILE mouse.vhd
-set_global_assignment -name VHDL_FILE ball.vhd
 set_global_assignment -name VHDL_FILE vga_sync.vhd
 set_global_assignment -name BDF_FILE FlipFlopBird.bdf
 set_global_assignment -name QIP_FILE altpll0.qip
