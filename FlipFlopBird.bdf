@@ -192,7 +192,7 @@ applicable agreement for further details.
 	(annotation_block (location)(rect 256 432 312 448))
 )
 (symbol
-	(rect 784 280 1008 456)
+	(rect 792 280 1016 456)
 	(text "VGA_SYNC" (rect 5 0 65 12)(font "Arial" ))
 	(text "inst" (rect 8 160 25 172)(font "Arial" ))
 	(port
@@ -437,7 +437,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 480 296 672 472)
+	(rect 480 296 680 472)
 	(text "bird" (rect 5 0 22 12)(font "Arial" ))
 	(text "inst1" (rect 8 160 31 172)(font "Arial" ))
 	(port
@@ -490,28 +490,78 @@ applicable agreement for further details.
 		(line (pt 0 128)(pt 16 128)(line_width 3))
 	)
 	(port
-		(pt 192 32)
+		(pt 200 32)
 		(output)
 		(text "red" (rect 0 0 15 12)(font "Arial" ))
-		(text "red" (rect 159 27 174 39)(font "Arial" ))
-		(line (pt 192 32)(pt 176 32))
+		(text "red" (rect 167 27 182 39)(font "Arial" ))
+		(line (pt 200 32)(pt 184 32))
 	)
 	(port
-		(pt 192 48)
+		(pt 200 48)
 		(output)
 		(text "green" (rect 0 0 27 12)(font "Arial" ))
-		(text "green" (rect 149 43 176 55)(font "Arial" ))
-		(line (pt 192 48)(pt 176 48))
+		(text "green" (rect 157 43 184 55)(font "Arial" ))
+		(line (pt 200 48)(pt 184 48))
 	)
 	(port
-		(pt 192 64)
+		(pt 200 64)
 		(output)
 		(text "blue" (rect 0 0 20 12)(font "Arial" ))
-		(text "blue" (rect 155 59 175 71)(font "Arial" ))
-		(line (pt 192 64)(pt 176 64))
+		(text "blue" (rect 163 59 183 71)(font "Arial" ))
+		(line (pt 200 64)(pt 184 64))
+	)
+	(port
+		(pt 200 80)
+		(output)
+		(text "bird_on" (rect 0 0 35 12)(font "Arial" ))
+		(text "bird_on" (rect 150 75 185 87)(font "Arial" ))
+		(line (pt 200 80)(pt 184 80))
 	)
 	(drawing
-		(rectangle (rect 16 16 176 160))
+		(rectangle (rect 16 16 184 160))
+	)
+)
+(symbol
+	(rect 624 528 760 640)
+	(text "DisplayManager" (rect 5 0 84 12)(font "Arial" ))
+	(text "inst5" (rect 8 96 31 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 27 35 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "bird_on" (rect 0 0 35 12)(font "Arial" ))
+		(text "bird_on" (rect 21 43 56 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 136 32)
+		(output)
+		(text "r" (rect 0 0 3 12)(font "Arial" ))
+		(text "r" (rect 113 27 115 39)(font "Arial" ))
+		(line (pt 136 32)(pt 120 32))
+	)
+	(port
+		(pt 136 48)
+		(output)
+		(text "g" (rect 0 0 5 12)(font "Arial" ))
+		(text "g" (rect 111 43 115 55)(font "Arial" ))
+		(line (pt 136 48)(pt 120 48))
+	)
+	(port
+		(pt 136 64)
+		(output)
+		(text "b" (rect 0 0 5 12)(font "Arial" ))
+		(text "b" (rect 111 59 115 71)(font "Arial" ))
+		(line (pt 136 64)(pt 120 64))
+	)
+	(drawing
+		(rectangle (rect 16 16 120 96))
 	)
 )
 (connector
@@ -531,57 +581,12 @@ applicable agreement for further details.
 	(pt 320 168)
 )
 (connector
-	(pt 984 312)
-	(pt 1008 312)
-)
-(connector
-	(pt 984 328)
-	(pt 1008 328)
-)
-(connector
-	(pt 984 344)
-	(pt 1008 344)
-)
-(connector
-	(pt 984 360)
-	(pt 1008 360)
-)
-(connector
-	(pt 784 280)
-	(pt 784 312)
-)
-(connector
-	(pt 1048 392)
-	(pt 1008 392)
-	(bus)
-)
-(connector
-	(pt 360 280)
-	(pt 760 280)
-)
-(connector
-	(pt 760 280)
-	(pt 784 280)
-)
-(connector
 	(pt 352 184)
 	(pt 272 184)
 )
 (connector
 	(pt 272 184)
 	(pt 272 224)
-)
-(connector
-	(pt 672 328)
-	(pt 784 328)
-)
-(connector
-	(pt 672 344)
-	(pt 784 344)
-)
-(connector
-	(pt 672 360)
-	(pt 784 360)
 )
 (connector
 	(pt 144 400)
@@ -614,70 +619,6 @@ applicable agreement for further details.
 	(pt -144 336)
 )
 (connector
-	(pt 1096 376)
-	(pt 1096 512)
-)
-(connector
-	(pt 1008 376)
-	(pt 1096 376)
-)
-(connector
-	(pt 1096 376)
-	(pt 1136 376)
-)
-(connector
-	(pt 1048 496)
-	(pt 384 496)
-	(bus)
-)
-(connector
-	(pt 1048 392)
-	(pt 1048 496)
-	(bus)
-)
-(connector
-	(pt 1008 480)
-	(pt 408 480)
-	(bus)
-)
-(connector
-	(pt 1008 408)
-	(pt 1008 480)
-	(bus)
-)
-(connector
-	(pt 408 480)
-	(pt 408 424)
-	(bus)
-)
-(connector
-	(pt 408 424)
-	(pt 480 424)
-	(bus)
-)
-(connector
-	(pt 384 408)
-	(pt 384 496)
-	(bus)
-)
-(connector
-	(pt 384 408)
-	(pt 480 408)
-	(bus)
-)
-(connector
-	(pt 1096 512)
-	(pt 352 512)
-)
-(connector
-	(pt 352 392)
-	(pt 352 512)
-)
-(connector
-	(pt 352 392)
-	(pt 480 392)
-)
-(connector
 	(pt 360 280)
 	(pt 360 296)
 )
@@ -705,6 +646,159 @@ applicable agreement for further details.
 	(pt 144 368)
 	(pt 472 368)
 )
+(connector
+	(text "vert_sync" (rect 1080 435 1092 485)(font "Arial" )(vertical))
+	(pt 1096 376)
+	(pt 1096 488)
+)
+(connector
+	(text "vert_sync" (rect 362 376 412 388)(font "Arial" ))
+	(pt 480 392)
+	(pt 352 392)
+)
+(connector
+	(text "pixel_row[9..0]" (rect 394 392 464 404)(font "Arial" ))
+	(pt 384 408)
+	(pt 480 408)
+	(bus)
+)
+(connector
+	(text "pixel_col[9..0]" (rect 418 408 486 420)(font "Arial" ))
+	(pt 480 424)
+	(pt 408 424)
+	(bus)
+)
+(connector
+	(pt 680 328)
+	(pt 712 328)
+)
+(connector
+	(pt 680 344)
+	(pt 712 344)
+)
+(connector
+	(pt 680 360)
+	(pt 704 360)
+)
+(connector
+	(pt 792 280)
+	(pt 792 312)
+)
+(connector
+	(text "pixel_row[9..0]" (rect 1016 376 1086 388)(font "Arial" ))
+	(pt 1056 392)
+	(pt 1016 392)
+	(bus)
+)
+(connector
+	(text "pixel_col[9..0]" (rect 1016 392 1084 404)(font "Arial" ))
+	(pt 1016 408)
+	(pt 1056 408)
+	(bus)
+)
+(connector
+	(pt 760 280)
+	(pt 792 280)
+)
+(connector
+	(pt 1016 376)
+	(pt 1096 376)
+)
+(connector
+	(pt 1096 376)
+	(pt 1136 376)
+)
+(connector
+	(pt 984 312)
+	(pt 1016 312)
+)
+(connector
+	(pt 984 328)
+	(pt 1016 328)
+)
+(connector
+	(pt 984 344)
+	(pt 1016 344)
+)
+(connector
+	(pt 984 360)
+	(pt 1016 360)
+)
+(connector
+	(text "blue" (rect 776 344 796 356)(font "Arial" ))
+	(pt 792 360)
+	(pt 776 360)
+)
+(connector
+	(text "green" (rect 776 328 803 340)(font "Arial" ))
+	(pt 792 344)
+	(pt 776 344)
+)
+(connector
+	(text "red" (rect 786 312 801 324)(font "Arial" ))
+	(pt 776 328)
+	(pt 792 328)
+)
+(connector
+	(pt 696 376)
+	(pt 680 376)
+)
+(connector
+	(pt 696 496)
+	(pt 696 376)
+)
+(connector
+	(pt 584 496)
+	(pt 696 496)
+)
+(connector
+	(text "red" (rect 770 544 785 556)(font "Arial" ))
+	(pt 760 560)
+	(pt 784 560)
+)
+(connector
+	(text "green" (rect 770 560 797 572)(font "Arial" ))
+	(pt 760 576)
+	(pt 784 576)
+)
+(connector
+	(text "blue" (rect 770 576 790 588)(font "Arial" ))
+	(pt 760 592)
+	(pt 784 592)
+)
+(connector
+	(pt 584 496)
+	(pt 584 576)
+)
+(connector
+	(pt 584 576)
+	(pt 624 576)
+)
+(connector
+	(pt 608 560)
+	(pt 624 560)
+)
+(connector
+	(pt 608 512)
+	(pt 608 560)
+)
+(connector
+	(pt 744 512)
+	(pt 744 280)
+)
+(connector
+	(pt 360 280)
+	(pt 744 280)
+)
+(connector
+	(pt 744 280)
+	(pt 760 280)
+)
+(connector
+	(pt 744 512)
+	(pt 608 512)
+)
 (junction (pt 760 280))
 (junction (pt 1096 376))
 (junction (pt 360 296))
+(junction (pt 744 280))
