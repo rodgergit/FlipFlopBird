@@ -38,16 +38,93 @@ SIGNAL gapOne_y_pos				: std_logic_vector(9 DOWNTO 0);
 SiGNAL gapOne_x_pos				: std_logic_vector(10 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(350,11);
 
 
+signal speed_trig : std_logic;
+signal clock_counter : integer := 0;
+signal difficulty_level : std_logic_vector(1 downto 0) := "00"; -- 00 = easy / 01 = med /  10 = hard
+signal pipes_passed : integer := 0;
+
 BEGIN   
 
+gap_x_motion <= CONV_STD_LOGIC_VECTOR(1,11) when difficulty_level = "00" else
+					 CONV_STD_LOGIC_VECTOR(3,11) when difficulty_level = "01" else
+					 CONV_STD_LOGIC_VECTOR(5,11) when difficulty_level = "10" else
+					 CONV_STD_LOGIC_VECTOR(1,11);
 
-
-gap_x_motion <= CONV_STD_LOGIC_VECTOR(1,11);
+--gap_x_motion <= CONV_STD_LOGIC_VECTOR(1,11);
 gap_size_x <= CONV_STD_LOGIC_VECTOR(100, 11);
 gap_size_y <= CONV_STD_LOGIC_VECTOR(75, 10);
 
 --gap_y_pos <= CONV_STD_LOGIC_VECTOR(150, 10);
 --gapOne_y_pos <= CONV_STD_LOGIC_VECTOR(250, 10);
+--
+--difficulty_mode_set : process (pipes_passed)
+--begin
+--
+--	if pipes_passed = 10 and difficulty_level /= "10" then
+--	
+--		difficulty_level <= difficulty_level + "01";
+--		pipes_passed <= 0;
+--		
+--	end if;
+--	
+--end process difficulty_mode_set;
+
+
+
+
+
+
+--difficulty_speed : process (clk)
+--	
+--begin
+--
+--if (rising_edge(clk)) then
+--
+--
+--	if difficulty_level = "00" then
+--	
+--		if clock_counter >= 500 then
+--			
+--			speed_trig <= '1';
+--			clock_counter <= 0;
+--		else
+--			clock_counter <= clock_counter + 1;
+--			speed_trig <= '0';
+--		end if;
+--			
+--	elsif difficulty_level = "01" then
+--	
+--		if clock_counter >= 300 then
+--			
+--			speed_trig <= '1';
+--			clock_counter <= 0;
+--		else
+--			clock_counter <= clock_counter + 1;
+--			speed_trig <= '0';
+--		end if;
+--	
+--	
+--	elsif difficulty_level = "10" then
+--	
+--		if clock_counter >= 200 then
+--			
+--			speed_trig <= '1';
+--			clock_counter <= 0;
+--		else
+--			clock_counter <= clock_counter + 1;
+--			speed_trig <= '0';
+--		end if;
+--	
+--		
+--	end if;
+--	
+--end if;
+--
+--end process difficulty_speed;
+
+
+
+
 
 gapGen : process (random_num)
 begin	
@@ -90,16 +167,26 @@ Green <= placeholderPB1 ; --pb1
 Blue <= (not pipe_on) and (not pipeOne_on); -- (not lowPipe_on) and (not topPipe_on) ;
 
 
-gapPipe: process (vert_sync, gap_x_pos)  	
+gapPipe: process (vert_sync, gap_x_pos, pipes_passed)  	
 begin
 	-- Move ball once every vertical sync
 	if (rising_edge(vert_sync)) then
-
+	
+		
+		
+		
 		-- Bounce off top or bottom of the screen
 		if ( gap_x_pos <= CONV_STD_LOGIC_VECTOR(1,11) ) then
 			gap_x_pos <= CONV_STD_LOGIC_VECTOR(639, 11) + gap_size_x;
 			gap_y_pos <= y_pos_gen;
 			
+			if pipes_passed = 10 and difficulty_level /= "10" then
+	
+				difficulty_level <= difficulty_level + "01";
+				pipes_passed <= 0;
+			else
+				pipes_passed <= (pipes_passed + 2);
+			end if;
 		else
 			gap_x_pos <= gap_x_pos - gap_x_motion;--
 		end if;
@@ -108,7 +195,7 @@ begin
 	end if;
 end process gapPipe;
 
-gapPipeOne: process (vert_sync, gapOne_x_pos)  	
+gapPipeOne: process (vert_sync, gapOne_x_pos, pipes_passed)  	
 begin
 	-- Move ball once every vertical sync
 	if (rising_edge(vert_sync)) then
