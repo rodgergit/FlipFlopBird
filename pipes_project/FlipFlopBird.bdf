@@ -459,88 +459,74 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 528 288 728 464)
-	(text "bouncy_ball" (rect 5 0 64 12)(font "Arial" ))
-	(text "inst1" (rect 8 160 31 172)(font "Arial" ))
+	(rect 536 304 744 448)
+	(text "pipes" (rect 5 0 30 12)(font "Arial" ))
+	(text "inst5" (rect 8 128 31 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "pb1" (rect 0 0 17 12)(font "Arial" ))
-		(text "pb1" (rect 21 27 38 39)(font "Arial" ))
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 27 35 39)(font "Arial" ))
 		(line (pt 0 32)(pt 16 32))
 	)
 	(port
 		(pt 0 48)
 		(input)
-		(text "pb2" (rect 0 0 17 12)(font "Arial" ))
-		(text "pb2" (rect 21 43 38 55)(font "Arial" ))
+		(text "vert_sync" (rect 0 0 50 12)(font "Arial" ))
+		(text "vert_sync" (rect 21 43 71 55)(font "Arial" ))
 		(line (pt 0 48)(pt 16 48))
 	)
 	(port
 		(pt 0 64)
 		(input)
-		(text "clk" (rect 0 0 14 12)(font "Arial" ))
-		(text "clk" (rect 21 59 35 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64))
+		(text "pixel_row[9..0]" (rect 0 0 70 12)(font "Arial" ))
+		(text "pixel_row[9..0]" (rect 21 59 91 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "vert_sync" (rect 0 0 50 12)(font "Arial" ))
-		(text "vert_sync" (rect 21 75 71 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80))
+		(text "pixel_column[9..0]" (rect 0 0 89 12)(font "Arial" ))
+		(text "pixel_column[9..0]" (rect 21 75 110 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
 		(pt 0 96)
 		(input)
-		(text "horiz_sync" (rect 0 0 53 12)(font "Arial" ))
-		(text "horiz_sync" (rect 21 91 74 103)(font "Arial" ))
-		(line (pt 0 96)(pt 16 96))
-	)
-	(port
-		(pt 0 112)
-		(input)
-		(text "pixel_row[9..0]" (rect 0 0 70 12)(font "Arial" ))
-		(text "pixel_row[9..0]" (rect 21 107 91 119)(font "Arial" ))
-		(line (pt 0 112)(pt 16 112)(line_width 3))
-	)
-	(port
-		(pt 0 128)
-		(input)
-		(text "pixel_column[9..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "pixel_column[9..0]" (rect 21 123 110 135)(font "Arial" ))
-		(line (pt 0 128)(pt 16 128)(line_width 3))
-	)
-	(port
-		(pt 0 144)
-		(input)
 		(text "random_num[2..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "random_num[2..0]" (rect 21 139 110 151)(font "Arial" ))
-		(line (pt 0 144)(pt 16 144)(line_width 3))
+		(text "random_num[2..0]" (rect 21 91 110 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port
-		(pt 200 32)
+		(pt 208 32)
 		(output)
 		(text "red" (rect 0 0 15 12)(font "Arial" ))
-		(text "red" (rect 167 27 179 39)(font "Arial" ))
-		(line (pt 200 32)(pt 184 32))
+		(text "red" (rect 175 27 187 39)(font "Arial" ))
+		(line (pt 208 32)(pt 192 32))
 	)
 	(port
-		(pt 200 48)
+		(pt 208 48)
 		(output)
 		(text "green" (rect 0 0 27 12)(font "Arial" ))
-		(text "green" (rect 157 43 179 55)(font "Arial" ))
-		(line (pt 200 48)(pt 184 48))
+		(text "green" (rect 165 43 187 55)(font "Arial" ))
+		(line (pt 208 48)(pt 192 48))
 	)
 	(port
-		(pt 200 64)
+		(pt 208 64)
 		(output)
 		(text "blue" (rect 0 0 20 12)(font "Arial" ))
-		(text "blue" (rect 163 59 179 71)(font "Arial" ))
-		(line (pt 200 64)(pt 184 64))
+		(text "blue" (rect 171 59 187 71)(font "Arial" ))
+		(line (pt 208 64)(pt 192 64))
+	)
+	(port
+		(pt 208 80)
+		(output)
+		(text "pipe_on" (rect 0 0 37 12)(font "Arial" ))
+		(text "pipe_on" (rect 156 75 187 87)(font "Arial" ))
+		(line (pt 208 80)(pt 192 80))
 	)
 	(drawing
-		(rectangle (rect 16 16 184 160))
+		(rectangle (rect 16 16 192 128))
 	)
 )
 (connector
@@ -598,10 +584,6 @@ applicable agreement for further details.
 	(pt 320 168)
 )
 (connector
-	(pt 360 280)
-	(pt 760 280)
-)
-(connector
 	(pt 1096 416)
 	(pt 1160 416)
 )
@@ -632,10 +614,6 @@ applicable agreement for further details.
 (connector
 	(pt -144 296)
 	(pt 360 296)
-)
-(connector
-	(pt 320 696)
-	(pt 1136 696)
 )
 (connector
 	(pt 1136 368)
@@ -706,10 +684,6 @@ applicable agreement for further details.
 	(pt 1136 368)
 )
 (connector
-	(pt 1136 368)
-	(pt 1136 696)
-)
-(connector
 	(pt 1096 368)
 	(pt 1096 416)
 )
@@ -736,86 +710,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(pt 776 320)
-	(pt 728 320)
-)
-(connector
-	(pt 776 336)
-	(pt 728 336)
-)
-(connector
-	(pt 776 352)
-	(pt 728 352)
-)
-(connector
-	(pt 360 280)
-	(pt 360 296)
-)
-(connector
-	(pt 360 296)
-	(pt 360 352)
-)
-(connector
-	(pt 360 352)
-	(pt 528 352)
-)
-(connector
-	(pt 352 368)
-	(pt 352 664)
-)
-(connector
-	(pt 352 368)
-	(pt 528 368)
-)
-(connector
-	(pt 320 384)
-	(pt 320 696)
-)
-(connector
-	(pt 320 384)
-	(pt 528 384)
-)
-(connector
-	(pt 384 400)
-	(pt 384 640)
-	(bus)
-)
-(connector
-	(pt 384 400)
-	(pt 528 400)
-	(bus)
-)
-(connector
-	(pt 408 416)
-	(pt 408 608)
-	(bus)
-)
-(connector
-	(pt 408 416)
-	(pt 528 416)
-	(bus)
-)
-(connector
-	(pt 432 504)
-	(pt 432 448)
-	(bus)
-)
-(connector
-	(pt 432 448)
-	(pt 504 448)
-	(bus)
-)
-(connector
-	(pt 528 432)
-	(pt 504 432)
-	(bus)
-)
-(connector
-	(pt 504 432)
-	(pt 504 448)
-	(bus)
-)
-(connector
 	(pt -192 296)
 	(pt -192 544)
 )
@@ -833,9 +727,102 @@ applicable agreement for further details.
 	(pt 632 544)
 	(bus)
 )
+(connector
+	(pt 360 280)
+	(pt 360 296)
+)
+(connector
+	(pt 752 320)
+	(pt 752 336)
+)
+(connector
+	(pt 776 320)
+	(pt 752 320)
+)
+(connector
+	(pt 752 336)
+	(pt 744 336)
+)
+(connector
+	(pt 760 336)
+	(pt 760 352)
+)
+(connector
+	(pt 776 336)
+	(pt 760 336)
+)
+(connector
+	(pt 760 352)
+	(pt 744 352)
+)
+(connector
+	(pt 768 352)
+	(pt 768 368)
+)
+(connector
+	(pt 776 352)
+	(pt 768 352)
+)
+(connector
+	(pt 768 368)
+	(pt 744 368)
+)
+(connector
+	(pt 504 280)
+	(pt 504 336)
+)
+(connector
+	(pt 504 336)
+	(pt 536 336)
+)
+(connector
+	(pt 360 280)
+	(pt 504 280)
+)
+(connector
+	(pt 504 280)
+	(pt 760 280)
+)
+(connector
+	(pt 352 352)
+	(pt 352 664)
+)
+(connector
+	(pt 352 352)
+	(pt 536 352)
+)
+(connector
+	(pt 384 368)
+	(pt 384 640)
+	(bus)
+)
+(connector
+	(pt 384 368)
+	(pt 536 368)
+	(bus)
+)
+(connector
+	(pt 408 384)
+	(pt 408 608)
+	(bus)
+)
+(connector
+	(pt 408 384)
+	(pt 536 384)
+	(bus)
+)
+(connector
+	(pt 432 400)
+	(pt 432 504)
+	(bus)
+)
+(connector
+	(pt 432 400)
+	(pt 536 400)
+	(bus)
+)
 (junction (pt 760 280))
-(junction (pt 360 296))
 (junction (pt 328 168))
 (junction (pt 1096 416))
-(junction (pt 1136 368))
 (junction (pt -144 296))
+(junction (pt 504 280))

@@ -4,22 +4,19 @@ USE  IEEE.STD_LOGIC_ARITH.all;
 USE  IEEE.STD_LOGIC_SIGNED.all;
 
 
-ENTITY bouncy_ball IS
+ENTITY pipes IS
 	PORT
-		(SIGNAL pb1, pb2, clk, vert_sync, horiz_sync	: IN std_logic;
-       SIGNAL pixel_row, pixel_column		: IN std_logic_vector(9 DOWNTO 0);
-		 SIGNAL random_num : IN std_logic_vector(2 downto 0);
-		 SIGNAL red, green, blue 			: OUT std_logic);		
-END bouncy_ball;
+		(SIGNAL clk, vert_sync								: IN std_logic;
+       SIGNAL pixel_row, pixel_column					: IN std_logic_vector(9 DOWNTO 0);
+		 SIGNAL random_num 									: IN std_logic_vector(2 downto 0);
+		 SIGNAL red, green, blue, pipe_on				: OUT std_logic);		
+END pipes;
 
-architecture behavior of bouncy_ball is
+architecture behavior of pipes is
+
+signal pipes_on 				: std_logic;
 
 
-
-signal placeholderPB1 		: std_logic := '1';
-signal placeholderPB2 		:	std_logic := '0';
-
-signal pipe_on             : std_logic;
 
 SIGNAL y_pos_gen           : std_logic_vector(9 downto 0);
 
@@ -71,8 +68,8 @@ begin
 
 end process gapGen ;
 
-
-pipe_on <= '1' when ((('0' & gap_x_pos - gap_size_x <= '0' & pixel_column) and -- first pipe
+pipe_on <= pipes_on;
+pipes_on <= '1' when ((('0' & gap_x_pos - gap_size_x <= '0' & pixel_column) and -- first pipe
 							('0' & pixel_column <= '0' & gap_x_pos ) and 
 							(('0' & gap_y_pos + gap_size_y <= '0' & pixel_row) or 
 							('0' & gap_y_pos - gap_size_y >= '0' & pixel_row)))or -- second pipe
@@ -86,9 +83,9 @@ pipe_on <= '1' when ((('0' & gap_x_pos - gap_size_x <= '0' & pixel_column) and -
 -- Colours for pixel data on video signal
 -- Changing the background and ball colour by pushbuttons
 
-Red <= (not placeholderPB2) and ( not pipe_on); 
-Green <= placeholderPB1 ; --pb1
-Blue <= (not pipe_on) ; 
+Red <= (not '0') and ( not pipes_on); 
+Green <= '1' ; --pb1
+Blue <= (not pipes_on) ; 
 
 
 gapPipe: process (vert_sync, gap_x_pos, pipes_passed)  	
