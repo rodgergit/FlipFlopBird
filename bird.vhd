@@ -6,7 +6,7 @@ USE  IEEE.STD_LOGIC_SIGNED.all;
 
 ENTITY bird IS
 	PORT
-		(SIGNAL pb1, pb2, mouse1, clk, vert_sync	: IN std_logic;
+		(SIGNAL mouse1, clk, vert_sync	: IN std_logic;
         SIGNAL pixel_row, pixel_column		: IN std_logic_vector(9 DOWNTO 0);
 		SIGNAL red, green, blue 			: OUT std_logic;		
 		signal bird_on : out std_logic);
