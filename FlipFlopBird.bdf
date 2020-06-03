@@ -587,6 +587,28 @@ applicable agreement for further details.
 		(rectangle (rect 16 16 192 128))
 	)
 )
+(symbol
+	(rect 1096 64 1256 144)
+	(text "lfsr_threeBit" (rect 5 0 65 12)(font "Arial" ))
+	(text "inst8" (rect 8 64 31 76)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "i_clk" (rect 0 0 22 12)(font "Arial" ))
+		(text "i_clk" (rect 21 27 43 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 160 32)
+		(output)
+		(text "o_lfsr[2..0]" (rect 0 0 54 12)(font "Arial" ))
+		(text "o_lfsr[2..0]" (rect 94 27 148 39)(font "Arial" ))
+		(line (pt 160 32)(pt 144 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 144 64))
+	)
+)
 (connector
 	(pt 616 184)
 	(pt 640 184)
