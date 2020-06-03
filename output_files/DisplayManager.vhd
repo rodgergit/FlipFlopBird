@@ -20,12 +20,15 @@ begin
 	begin
 	
 	wait until clk'event and clk ='1';
-	
-	if bird_on = '1' then
+	if bird_on ='1' and pipe_on = '1' then
+		r <= '1';
+		g <= '1';
+		b <= '1';
+	elsif bird_on = '1' then
 		r <= '1';
 		g <= '0';
 		b <= '0';
-		
+	
 	elsif pipe_on = '1' then
 		r <= '0';
 		g <= '1';
