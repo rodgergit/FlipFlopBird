@@ -26,8 +26,9 @@ end entity control_unit;
 
 architecture arch of control_unit is
     type state_type is (menu, level1, level2, level3, death, paused);
-    signal state:      state_type;
-    signal next_state: state_type;
+    signal state:         state_type;
+    signal next_state:    state_type;
+    signal resumed_state: state_type;
 
     signal mode:  std_logic;
 begin
@@ -70,7 +71,6 @@ begin
     end process output_decoder;
 
     next_state_decoder: process (state, sel, conf, pause, lives, score, mode)
-        variable resumed_state: state_type;
     begin
         case (state) is
             when menu =>
@@ -85,8 +85,8 @@ begin
                 if (lives = "00") then
                     next_state <= death;
                 elsif (pause = '1') then
+                    resumed_state <= level1;
                     next_state <= paused;
-                    resumed_state := level1;
                 elsif (mode = '1' and score = "001100100") then
                     next_state <= level2;
                 else
@@ -96,8 +96,8 @@ begin
                 if (lives = "00") then
                     next_state <= death;
                 elsif (pause = '1') then
+                    resumed_state <= level2;
                     next_state <= paused;
-                    resumed_state := level2;
                 elsif (mode = '1' and score = "011001000") then
                     next_state <= level3;
                 else
@@ -107,8 +107,8 @@ begin
                 if (lives = "00") then
                     next_state <= death;
                 elsif (pause = '1') then
+                    resumed_state <= level3;
                     next_state <= paused;
-                    resumed_state := level3;
                 else
                     next_state <= level3;
                 end if;
