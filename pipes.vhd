@@ -53,9 +53,9 @@ BEGIN
 					 
 	--gap_x_motion <= conv_STD_LOGIC_VECTOR(1,11); -- must be changed to below
 gap_x_motion <= CONV_STD_LOGIC_VECTOR(0,11) when state = "000" else -- need input from control unit , state
-					 CONV_STD_LOGIC_VECTOR(1,11) when state = "001" else
-					 CONV_STD_LOGIC_VECTOR(2,11) when state = "010" else
-					 CONV_STD_LOGIC_VECTOR(3,11) when state = "011" else
+					 CONV_STD_LOGIC_VECTOR(2,11) when state = "001" else
+					 CONV_STD_LOGIC_VECTOR(3,11) when state = "010" else
+					 CONV_STD_LOGIC_VECTOR(4,11) when state = "011" else
 					 CONV_STD_LOGIC_VECTOR(0,11) when state = "100" else
 					 CONV_STD_LOGIC_VECTOR(0,11) when state = "101" else
 					 CONV_STD_LOGIC_VECTOR(0,11) when state = "111" else
