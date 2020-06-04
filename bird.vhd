@@ -8,6 +8,7 @@ ENTITY bird IS
 	PORT
 		(SIGNAL mouse1, clk, vert_sync	: IN std_logic;
         SIGNAL pixel_row, pixel_column		: IN std_logic_vector(9 DOWNTO 0);
+		  signal state : in std_logic_vector(2 downto 0);
 		SIGNAL red, green, blue 			: OUT std_logic;		
 		signal bird_on : out std_logic);
 END bird;
@@ -16,7 +17,7 @@ architecture behavior of bird is
 
 SIGNAL bird_signal					: std_logic;
 SIGNAL size 					: std_logic_vector(9 DOWNTO 0);  
-SIGNAL ball_y_pos				: std_logic_vector(9 DOWNTO 0);
+SIGNAL ball_y_pos				: std_logic_vector(9 DOWNTO 0) := CONV_STD_LOGIC_VECTOR(320,10);
 SiGNAL ball_x_pos				: std_logic_vector(10 DOWNTO 0);
 SIGNAL ball_y_motion			: std_logic_vector(9 DOWNTO 0);
 signal placeholderPB1 : std_logic := '1';
@@ -50,30 +51,34 @@ begin
 end process;
 
 
-Move_Bird: process (vert_sync, mouse1)  	
+Move_Bird: process (vert_sync, mouse1, state)  	
 begin
 	-- Move ball once every vertical sync
 	if (rising_edge(vert_sync)) then
+	
+		if(state = "001" or state = "010" or state = "011") then
 		
-		-- Flap logic
-		if (mouse1 = '1') then
-			ball_y_motion <= - CONV_STD_LOGIC_VECTOR(3,10);
-		else
-			-- Falling logic
-			ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
+			-- Flap logic
+			if (mouse1 = '1') then
+				ball_y_motion <= - CONV_STD_LOGIC_VECTOR(3,10);
+			else
+				-- Falling logic
+				ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
+			end if;
+		
+			-- Caps the bird to the top of the screen
+			if (ball_y_pos <= size) then
+				ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
+			end if;
+		
+			-- Caps the bird to the bottom of the screen
+			if ( ('0' & ball_y_pos >= CONV_STD_LOGIC_VECTOR(479,10) - size) ) then
+				ball_y_motion <= -CONV_STD_LOGIC_VECTOR(2,10);
+			end if;
+		
+			ball_y_pos <= ball_y_pos + ball_y_motion;
+			
 		end if;
-		
-		-- Caps the bird to the top of the screen
-		if (ball_y_pos <= size) then
-			ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
-		end if;
-		
-		-- Caps the bird to the bottom of the screen
-		if ( ('0' & ball_y_pos >= CONV_STD_LOGIC_VECTOR(479,10) - size) ) then
-			ball_y_motion <= -CONV_STD_LOGIC_VECTOR(2,10);
-		end if;
-		
-		ball_y_pos <= ball_y_pos + ball_y_motion;
 		
 	end if;
 end process Move_Bird;
