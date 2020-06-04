@@ -42,16 +42,13 @@ signal pipeOne_AlreadyPassed_flag : std_logic := '0';   -- used inn the counting
 signal pipeZero_AlreadyPassed_flag : std_logic := '0';   -- used in the counting of pipes
 
 
---signal difficulty_level : std_logic_vector(1 downto 0) := "00"; -- 00 = easy / 01 = med /  10 = hard
 
 
---signal tenPipe_checkpoint : integer := 0;
 BEGIN   
 
 
 					 
 					 
-	--gap_x_motion <= conv_STD_LOGIC_VECTOR(1,11); -- must be changed to below
 gap_x_motion <= CONV_STD_LOGIC_VECTOR(0,11) when state = "000" else -- need input from control unit , state
 					 CONV_STD_LOGIC_VECTOR(2,11) when state = "001" else
 					 CONV_STD_LOGIC_VECTOR(3,11) when state = "010" else
@@ -93,9 +90,7 @@ begin
 	end case;
 
 end process gapGen ;
-------------------------------------------------------------
 
--------------------------------------------------------------
 
 pipe_on <= pipes_on;   -- for display
 pipes_on <= '1' when ((('0' & gap_x_pos - gap_size_x <= '0' & pixel_column) and -- first pipe
@@ -142,12 +137,7 @@ begin
 		end if;
 	end if;
 end process gapPipeZero;
----------------------------------------
---pipecount: process (gap_x_pos, pipeZero_passed, pipeone_passed, gapOne_x_pos )
---begin
---	if ( gap_x_pos  <= CONV_STD_LOGIC_VECTOR(320,11))
---end process pipecount;
-----------------------------------
+
 gapPipeOne: process (vert_sync, gapOne_x_pos, state)  	
 begin
 	-- Move pipe once every vertical sync
