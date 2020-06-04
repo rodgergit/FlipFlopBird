@@ -22,12 +22,12 @@ begin
 	begin
 	
 	wait until clk'event and clk ='1';
-	if bird_on ='1' and pipe_on = '1' then
-		r <= '1';
-		g <= '1';
-		b <= '1';
+	--if bird_on ='1' and pipe_on = '1' then
+		--r <= '1';
+		--g <= '1';
+		--b <= '1';
 	
-	elsif text_on = '1' then
+	if text_on = '1' then
 		r <= rom_data;
 		g <= rom_data;
 		b <= '0';
@@ -46,10 +46,11 @@ begin
 		r <= '0';
 		g <= '0';
 		b <= '1';
+		
 	else
 		r <= '0';
-		g <= '1';
-		b <= '1';
+		g <= '0';
+		b <= '0';
 		
 	end if;
 
