@@ -66,7 +66,7 @@ begin
 		
 			-- Flap logic
 			if (mouse1 = '1') then
-				ball_y_motion <= - CONV_STD_LOGIC_VECTOR(4,10);
+				ball_y_motion <= - CONV_STD_LOGIC_VECTOR(3,10);
 			else
 				-- Falling logic
 				ball_y_motion <= CONV_STD_LOGIC_VECTOR(3,10);
