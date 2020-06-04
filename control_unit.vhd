@@ -17,7 +17,7 @@ entity control_unit is
 
         -- control signals
         state_out: out std_logic_vector(2 downto 0);
-        mode:      out std_logic;
+        mode_out:  out std_logic;
 
         -- control outputs
         led_out: out std_logic_vector(9 downto 0)
@@ -76,6 +76,7 @@ begin
             when menu =>
                 if (conf = '1') then
                     mode <= sel;
+                    mode_out <= sel;
                     next_state <= level1;
                 else
                     next_state <= menu;
