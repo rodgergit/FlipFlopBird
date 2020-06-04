@@ -1646,11 +1646,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "mouse1" (rect 168 464 206 476)(font "Arial" ))
-	(pt 168 480)
-	(pt 200 480)
-)
-(connector
 	(text "clk0" (rect 178 480 198 492)(font "Arial" ))
 	(pt 168 496)
 	(pt 200 496)
@@ -1687,5 +1682,10 @@ applicable agreement for further details.
 	(text "ground_on" (rect 426 528 476 540)(font "Arial" ))
 	(pt 416 544)
 	(pt 480 544)
+)
+(connector
+	(text "mouse1" (rect 168 464 206 476)(font "Arial" ))
+	(pt 168 480)
+	(pt 200 480)
 )
 (junction (pt 1104 408))
