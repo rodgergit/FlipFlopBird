@@ -5,11 +5,11 @@ use ieee.numeric_std.all;
 entity control_unit is
     port (
         -- control inputs
-        clk:   in std_logic;
-        reset: in std_logic; -- button 0
-        sel:   in std_logic; -- sw0
-        conf:  in std_logic; -- mouse1
-        pause: in std_logic; -- mouse2
+        clk:    in std_logic;
+        reset:  in std_logic; -- button 0
+        sel:    in std_logic; -- sw0
+        mouse1: in std_logic; -- mouse1
+        mouse2: in std_logic; -- mouse2
 
         -- status signals
         lives: in std_logic_vector(1 downto 0);
@@ -30,8 +30,31 @@ architecture arch of control_unit is
     signal next_state:    state_type;
     signal resumed_state: state_type;
 
+    signal mouse1_prev: std_logic;
+    signal mouse2_prev: std_logic;
+    signal conf:  std_logic;
+    signal pause: std_logic;
     signal mode:  std_logic;
 begin
+    process(clk, mouse1, mouse1_prev, mouse2, mouse2_prev)
+    begin
+        if (rising_edge(clk)) then
+            if (mouse1 = '1' and mouse1_prev = '0') then
+                conf <= '1';
+            else
+                conf <= '0';
+            end if;
+            mouse1_prev <= mouse1;
+
+            if (mouse2 = '1' and mouse2_prev = '0') then
+                pause <= '1';
+            else
+                pause <= '0';
+            end if;
+            mouse2_prev <= mouse2;
+        end if;
+    end process;
+
     main: process (clk)
     begin
         if (rising_edge(clk)) then
