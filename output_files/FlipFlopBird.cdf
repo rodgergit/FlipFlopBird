@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP3C16F484) Path("C:/Users/Rodger/Desktop/FlipFlopBird/output_files/") File("FlipFlopBird.sof") MfrSpec(OpMask(1));
+		Device PartName(EP3C16F484) Path("C:/Users/Rodger/Desktop/Compsys 305 project/FlipFlopBird/output_files/") File("FlipFlopBird.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
