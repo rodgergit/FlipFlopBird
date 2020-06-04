@@ -15,15 +15,17 @@ entity control_unit is
         distance_passed: in std_logic;
         all_lives_lost:  in std_logic;
 
-        led_out: out std_logic_vector(9 downto 0)
+        -- control signals
+        state_out: out std_logic_vector(2 downto 0);
+        led_out:   out std_logic_vector(9 downto 0)
     );
 end entity control_unit;
 
 architecture arch of control_unit is
-    type state is (menu, level1, level2, level3, death, paused);
+    type state_type is (menu, level1, level2, level3, death, paused);
 
-    signal current_state: state;
-    signal next_state:    state;
+    signal state:      state_type;
+    signal next_state: state_type;
 
     signal left_prev:  std_logic;
     signal right_prev: std_logic;
@@ -55,37 +57,44 @@ begin
     begin
         if (rising_edge(clk)) then
             if (reset = '0') then
-                current_state <= menu;
+                state <= menu;
             else
-                current_state <= next_state;
+                state <= next_state;
             end if;
         end if;
     end process main;
 
-    output_decoder: process(current_state)
+    output_decoder: process(state)
     begin
-        case (current_state) is
+        case (state) is
             when menu =>
+                state_out <= "000";
                 led_out <= "1000000000";
             when level1 =>
+                state_out <= "001";
                 led_out <= "0100000000";
             when level2 =>
+                state_out <= "010";
                 led_out <= "0010000000";
             when level3 =>
+                state_out <= "011";
                 led_out <= "0001000000";
             when death =>
+                state_out <= "100";
                 led_out <= "0000100000";
             when paused =>
+                state_out <= "101";
                 led_out <= "0000010000";
             when others =>
+                state_out <= "111";
                 led_out <= "1111111111";
         end case;
     end process output_decoder;
 
-    next_state_decoder: process(current_state, pause, conf, sel, mode, distance_passed, all_lives_lost)
-        variable resumed_state: state;
+    next_state_decoder: process(state, pause, conf, sel, mode, distance_passed, all_lives_lost)
+        variable resumed_state: state_type;
     begin
-        case (current_state) is
+        case (state) is
             when menu =>
                 if (conf = '1') then
                     mode <= sel;
