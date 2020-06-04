@@ -133,14 +133,21 @@ begin
 			else
 				if ( gap_x_pos  <= CONV_STD_LOGIC_VECTOR(320,11) and pipeZero_AlreadyPassed_flag = '0'  ) then -- record pipe as passed when it passes half way
 					pipeZero_passed <= '1';
-					pipeZero_AlreadyPassed_flag <= '1';  -- put flag up to stop multiple pipe passeds for one pipe	
+					pipeZero_AlreadyPassed_flag <= '1';
+				else
+					pipeZero_passed <= '0';
 				end if;
 				gap_x_pos <= gap_x_pos - gap_x_motion;--
 			end if;
 		end if;
 	end if;
 end process gapPipeZero;
-
+---------------------------------------
+--pipecount: process (gap_x_pos, pipeZero_passed, pipeone_passed, gapOne_x_pos )
+--begin
+--	if ( gap_x_pos  <= CONV_STD_LOGIC_VECTOR(320,11))
+--end process pipecount;
+----------------------------------
 gapPipeOne: process (vert_sync, gapOne_x_pos, state)  	
 begin
 	-- Move pipe once every vertical sync
@@ -158,6 +165,8 @@ begin
 				if ( gapOne_x_pos  <= CONV_STD_LOGIC_VECTOR(320,11) and pipeZero_AlreadyPassed_flag = '0' ) then
 					pipeOne_passed <= '1';
 					pipeone_AlreadyPassed_flag <= '1';
+				else 
+					pipeOne_passed <= '0';
 				end if;
 				gapOne_x_pos <= gapOne_x_pos - gap_x_motion;--	
 			end if;
