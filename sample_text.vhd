@@ -7,6 +7,9 @@ entity sample_text is
 	port(	pixel_row, pixel_col: IN std_logic_vector(9 downto 0);
 			state : in std_logic_vector(2 downto 0);
 			life : in std_logic_vector(1 downto 0);
+			mode : in std_logic;
+			score : in std_logic_vector(8 downto 0);
+			clk : in std_logic;
 			character_address: OUT std_logic_vector(5 downto 0);
 			font_row, font_col: OUT std_logic_vector(2 downto 0);
 			text_on : out std_logic);
@@ -27,6 +30,28 @@ signal scoreHundreds : std_logic_vector(3 downto 0) := "0000";
 signal levelOnes : std_logic_vector(3 downto 0) := "0000";
 
 begin 
+
+getDigits : process
+
+	variable v_score : integer;
+	variable v_scoresOnes : integer;
+	variable v_scoresTens : integer;
+	variable v_scoresHundreds: integer;
+begin
+	wait until clk'event and clk ='1';
+	
+	v_score := conv_integer(score);
+	
+	v_scoresOnes := v_score / 100;
+	v_scoresTens := v_score / 100;
+	v_scoresHundreds := v_score / 100;
+	
+	scoreOnes <= CONV_STD_LOGIC_VECTOR(v_scoresOnes,4);
+	scoreTens <= CONV_STD_LOGIC_VECTOR(v_scoresTens,4);
+	scoreHundreds <= CONV_STD_LOGIC_VECTOR(v_scoresHundreds,4);
+	
+	
+end process;
 
 	process(pixel_col, pixel_row)
 		variable v_font_row, v_font_col: std_logic_vector(2 downto 0);
@@ -453,7 +478,7 @@ begin
 						when "0111" => v_character_address := CONV_STD_LOGIC_VECTOR(55, 6); --7
 						when "1000" => v_character_address := CONV_STD_LOGIC_VECTOR(56, 6); --8
 						when "1001" => v_character_address := CONV_STD_LOGIC_VECTOR(57, 6); --9
-						when others => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6);
+						when others => v_character_address := CONV_STD_LOGIC_VECTOR(50, 6);
 					end case;
 					
 				--Level
@@ -585,6 +610,20 @@ begin
 					v_font_col := pixel_col(3 downto 1);
 					v_character_address := CONV_STD_LOGIC_VECTOR(32, 6);
 					text_on_var := '1';
+					
+				-- Numbers	
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(112, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(128, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(447, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(463, 10)) then
+					v_font_row := pixel_row(3 downto 1);
+					v_font_col := pixel_col(3 downto 1);
+					text_on_var := '1';
+					
+					case mode is 
+						when '0' => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6); --0
+						when '1' => v_character_address := CONV_STD_LOGIC_VECTOR(49, 6); --1
+					end case;
 				
 				else
 					v_character_address := CONV_STD_LOGIC_VECTOR(32,6);
