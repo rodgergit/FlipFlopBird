@@ -43,8 +43,8 @@ begin
 	v_score := conv_integer(score);
 	
 	v_scoresOnes := v_score / 100;
-	v_scoresTens := v_score / 100;
-	v_scoresHundreds := v_score / 100;
+	v_scoresTens := v_score / 10;
+	v_scoresHundreds := v_score;
 	
 	scoreOnes <= CONV_STD_LOGIC_VECTOR(v_scoresOnes,4);
 	scoreTens <= CONV_STD_LOGIC_VECTOR(v_scoresTens,4);
