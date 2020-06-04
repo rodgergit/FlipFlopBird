@@ -5,10 +5,11 @@ entity control_unit is
     port (
         -- control inputs
         clk:   in std_logic;
-        reset_t: in std_logic; -- button 0
-        pause_t: in std_logic; -- button 1
-        conf_t:  in std_logic; -- button 2
+        reset: in std_logic; -- button 0
         sel:   in std_logic; -- sw0
+
+        right_button: in std_logic;
+        left_button:  in std_logic;
 
         -- status signals
         distance_passed: in std_logic;
@@ -24,17 +25,36 @@ architecture arch of control_unit is
     signal current_state: state;
     signal next_state:    state;
 
-    signal mode: std_logic;
-    signal reset, pause, conf: std_logic;
+    signal left_prev:  std_logic;
+    signal right_prev: std_logic;
+
+    signal pause: std_logic;
+    signal conf:  std_logic;
+    signal mode:  std_logic;
 begin
-    reset <= not reset_t;
-    pause <= not pause_t;
-    conf <= not conf_t;
+    mouse_toggle: process(right_button, left_button)
+    begin
+        if (rising_edge(clk)) then
+            if (right_button = '1' and right_prev = '0') then
+                pause <= '1';
+            else
+                pause <= '0';
+            end if;
+            right_prev <= right_button;
+
+            if (left_button = '1' and left_prev = '0') then
+                conf <= '1';
+            else
+                conf <= '0';
+            end if;
+            left_prev <= left_button;
+        end if;
+    end process;
 
     main: process(clk)
     begin
         if (rising_edge(clk)) then
-            if (reset = '1') then
+            if (reset = '0') then
                 current_state <= menu;
             else
                 current_state <= next_state;
