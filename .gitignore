@@ -58,7 +58,6 @@ timing
 *.html
 *.jdi
 *.jpg
-*.mif
 *.pin
 *.pof
 *.ptf.*
