@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.all;
 USE  IEEE.STD_LOGIC_ARITH.all;
 USE  IEEE.STD_LOGIC_UNSIGNED.all;
 
-entity sample_text is
+entity text_manager is
 	port(	pixel_row, pixel_col: IN std_logic_vector(9 downto 0);
 			state : in std_logic_vector(2 downto 0);
 			life : in std_logic_vector(1 downto 0);
@@ -15,7 +15,7 @@ entity sample_text is
 			text_on : out std_logic);
 end entity;
 
-architecture behaviour of sample_text is
+architecture behaviour of text_manager is
 
 signal gameover : std_logic := '0';
 signal menu : std_logic := '0';

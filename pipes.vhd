@@ -10,7 +10,7 @@ ENTITY pipes IS
        SIGNAL pixel_row, pixel_column					: IN std_logic_vector(9 DOWNTO 0);
 		 SIGNAL random_num 									: IN std_logic_vector(2 downto 0); -- for random pipe height genneration 
 		 signal state : in std_logic_vector(2 downto 0); -- to determine speed
-		 SIGNAL red, green, blue, pipe_on				: OUT std_logic; -- for display
+		 SIGNAL pipe_on				: OUT std_logic; -- for display
 		 signal pipe_passed : out std_logic); -- connects to control unit which counts pipes
 		 
 END pipes;
@@ -103,12 +103,6 @@ pipes_on <= '1' when ((('0' & gap_x_pos - gap_size_x <= '0' & pixel_column) and 
 							('0' & gapOne_y_pos - gap_size_y >= '0' & pixel_row)) )))	
 					 else 
 							'0';	
-
--- Colours for pixel data on video signal
-
-Red <= (not '0') and ( not pipes_on) ; --and (t_powerUp_on); 
-Green <= '1' ;-- and (not t_powerUp_on) ; --pb1
-Blue <= (not pipes_on); -- and (not t_powerUp_on) ; 
 
 
 
