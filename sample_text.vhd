@@ -6,6 +6,7 @@ USE  IEEE.STD_LOGIC_UNSIGNED.all;
 entity sample_text is
 	port(	pixel_row, pixel_col: IN std_logic_vector(9 downto 0);
 			state : in std_logic_vector(2 downto 0);
+			life : in std_logic_vector(1 downto 0);
 			character_address: OUT std_logic_vector(5 downto 0);
 			font_row, font_col: OUT std_logic_vector(2 downto 0);
 			text_on : out std_logic);
@@ -19,13 +20,14 @@ signal game : std_logic := '1';
 
 signal lifeOnes : std_logic_vector(3 downto 0) := "0001";
 
-signal scoreOnes : std_logic_vector(3 downto 0) := "0000";
+signal scoreOnes : std_logic_vector(3 downto 0);
 signal scoreTens : std_logic_vector(3 downto 0) := "0000";
 signal scoreHundreds : std_logic_vector(3 downto 0) := "0000";
 
 signal levelOnes : std_logic_vector(3 downto 0) := "0000";
 
 begin 
+
 	process(pixel_col, pixel_row)
 		variable v_font_row, v_font_col: std_logic_vector(2 downto 0);
 		variable v_character_address: std_logic_vector(5 downto 0);
@@ -317,17 +319,11 @@ begin
 					v_font_col := pixel_col(3 downto 1);
 					text_on_var := '1';
 					
-					case lifeOnes is 
-						when "0000" => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6); --0
-						when "0001" => v_character_address := CONV_STD_LOGIC_VECTOR(49, 6); --1
-						when "0010" => v_character_address := CONV_STD_LOGIC_VECTOR(50, 6); --2
-						when "0011" => v_character_address := CONV_STD_LOGIC_VECTOR(51, 6); --3
-						when "0100" => v_character_address := CONV_STD_LOGIC_VECTOR(52, 6); --4
-						when "0101" => v_character_address := CONV_STD_LOGIC_VECTOR(53, 6); --5
-						when "0110" => v_character_address := CONV_STD_LOGIC_VECTOR(54, 6); --6
-						when "0111" => v_character_address := CONV_STD_LOGIC_VECTOR(55, 6); --7
-						when "1000" => v_character_address := CONV_STD_LOGIC_VECTOR(56, 6); --8
-						when "1001" => v_character_address := CONV_STD_LOGIC_VECTOR(57, 6); --9
+					case life is 
+						when "00" => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6); --0
+						when "01" => v_character_address := CONV_STD_LOGIC_VECTOR(49, 6); --1
+						when "10" => v_character_address := CONV_STD_LOGIC_VECTOR(50, 6); --2
+						when "11" => v_character_address := CONV_STD_LOGIC_VECTOR(51, 6); --3
 						when others => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6);
 					end case;
 			
@@ -530,32 +526,66 @@ begin
 					v_font_col := pixel_col(3 downto 1);
 					text_on_var := '1';
 					
-					case scoreHundreds is 
-						when "0000" => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6); --0
-						when "0001" => v_character_address := CONV_STD_LOGIC_VECTOR(49, 6); --1
-						when "0010" => v_character_address := CONV_STD_LOGIC_VECTOR(50, 6); --2
-						when "0011" => v_character_address := CONV_STD_LOGIC_VECTOR(51, 6); --3
-						when "0100" => v_character_address := CONV_STD_LOGIC_VECTOR(52, 6); --4
-						when "0101" => v_character_address := CONV_STD_LOGIC_VECTOR(53, 6); --5
-						when "0110" => v_character_address := CONV_STD_LOGIC_VECTOR(54, 6); --6
-						when "0111" => v_character_address := CONV_STD_LOGIC_VECTOR(55, 6); --7
-						when "1000" => v_character_address := CONV_STD_LOGIC_VECTOR(56, 6); --8
-						when "1001" => v_character_address := CONV_STD_LOGIC_VECTOR(57, 6); --9
+					case state is 
+						when "000" => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6); --0
+						when "001" => v_character_address := CONV_STD_LOGIC_VECTOR(49, 6); --1
+						when "010" => v_character_address := CONV_STD_LOGIC_VECTOR(50, 6); --2
+						when "011" => v_character_address := CONV_STD_LOGIC_VECTOR(51, 6); --3
 						when others => v_character_address := CONV_STD_LOGIC_VECTOR(48, 6);
 					end case;
 					
 					
 				-- Mode	
-				-- space
-				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(256, 10)) and
-					(pixel_col <= CONV_STD_LOGIC_VECTOR(272, 10)) and
-					(pixel_row >= CONV_STD_LOGIC_VECTOR(479, 10)) and
-					(pixel_row <= CONV_STD_LOGIC_VECTOR(495, 10)) then
+				-- M
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(32, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(48, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(447, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(463, 10)) then
+					v_font_row := pixel_row(3 downto 1);
+					v_font_col := pixel_col(3 downto 1);
+					v_character_address := CONV_STD_LOGIC_VECTOR(13, 6);
+					text_on_var := '1';
+				
+				--o
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(48, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(64, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(447, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(463, 10)) then
+					v_font_row := pixel_row(3 downto 1);
+					v_font_col := pixel_col(3 downto 1);
+					v_character_address := CONV_STD_LOGIC_VECTOR(15, 6);
+					text_on_var := '1';
+					
+				--d
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(64, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(80, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(447, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(463, 10)) then
+					v_font_row := pixel_row(3 downto 1);
+					v_font_col := pixel_col(3 downto 1);
+					v_character_address := CONV_STD_LOGIC_VECTOR(4, 6);
+					text_on_var := '1';
+					
+				--e
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(80, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(96, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(447, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(463, 10)) then
+					v_font_row := pixel_row(3 downto 1);
+					v_font_col := pixel_col(3 downto 1);
+					v_character_address := CONV_STD_LOGIC_VECTOR(5, 6);
+					text_on_var := '1';
+					
+				--space
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(96, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(112, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(447, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(463, 10)) then
 					v_font_row := pixel_row(3 downto 1);
 					v_font_col := pixel_col(3 downto 1);
 					v_character_address := CONV_STD_LOGIC_VECTOR(32, 6);
 					text_on_var := '1';
-					
+				
 				else
 					v_character_address := CONV_STD_LOGIC_VECTOR(32,6);
 					text_on_var := '0';
