@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity control_unit is
     port (
@@ -7,53 +8,29 @@ entity control_unit is
         clk:   in std_logic;
         reset: in std_logic; -- button 0
         sel:   in std_logic; -- sw0
-
-        right_button: in std_logic;
-        left_button:  in std_logic;
+        conf:  in std_logic; -- mouse1
+        pause: in std_logic; -- mouse2
 
         -- status signals
-        distance_passed: in std_logic;
-        all_lives_lost:  in std_logic;
+        lives: in std_logic_vector(1 downto 0);
+        score: in std_logic_vector(8 downto 0);
 
         -- control signals
         state_out: out std_logic_vector(2 downto 0);
-        led_out:   out std_logic_vector(9 downto 0)
+
+        -- control outputs
+        led_out: out std_logic_vector(9 downto 0)
     );
 end entity control_unit;
 
 architecture arch of control_unit is
     type state_type is (menu, level1, level2, level3, death, paused);
-
     signal state:      state_type;
     signal next_state: state_type;
 
-    signal left_prev:  std_logic;
-    signal right_prev: std_logic;
-
-    signal pause: std_logic;
-    signal conf:  std_logic;
     signal mode:  std_logic;
 begin
-    mouse_toggle: process(right_button, left_button)
-    begin
-        if (rising_edge(clk)) then
-            if (right_button = '1' and right_prev = '0') then
-                pause <= '1';
-            else
-                pause <= '0';
-            end if;
-            right_prev <= right_button;
-
-            if (left_button = '1' and left_prev = '0') then
-                conf <= '1';
-            else
-                conf <= '0';
-            end if;
-            left_prev <= left_button;
-        end if;
-    end process;
-
-    main: process(clk)
+    main: process (clk)
     begin
         if (rising_edge(clk)) then
             if (reset = '0') then
@@ -64,7 +41,7 @@ begin
         end if;
     end process main;
 
-    output_decoder: process(state)
+    output_decoder: process (state)
     begin
         case (state) is
             when menu =>
@@ -91,7 +68,7 @@ begin
         end case;
     end process output_decoder;
 
-    next_state_decoder: process(state, pause, conf, sel, mode, distance_passed, all_lives_lost)
+    next_state_decoder: process (state, sel, conf, pause, lives, score, mode)
         variable resumed_state: state_type;
     begin
         case (state) is
@@ -103,29 +80,29 @@ begin
                     next_state <= menu;
                 end if;
             when level1 =>
-                if (all_lives_lost = '1') then
+                if (lives = "00") then
                     next_state <= death;
                 elsif (pause = '1') then
                     next_state <= paused;
                     resumed_state := level1;
-                elsif (mode = '1' and distance_passed = '1') then
+                elsif (mode = '1' and score = "001100100") then
                     next_state <= level2;
                 else
                     next_state <= level1;
                 end if;
             when level2 =>
-                if (all_lives_lost = '1') then
+                if (lives = "00") then
                     next_state <= death;
                 elsif (pause = '1') then
                     next_state <= paused;
                     resumed_state := level2;
-                elsif (mode = '1' and distance_passed = '1') then
+                elsif (mode = '1' and score = "011001000") then
                     next_state <= level3;
                 else
                     next_state <= level2;
                 end if;
             when level3 =>
-                if (all_lives_lost = '1') then
+                if (lives = "00") then
                     next_state <= death;
                 elsif (pause = '1') then
                     next_state <= paused;
@@ -135,11 +112,7 @@ begin
                 end if;
             when death =>
                 if (conf = '1') then
-                    if (sel = '0') then
-                        next_state <= menu;
-                    elsif (sel = '1') then
-                        next_state <= level1;
-                    end if;
+                    next_state <= menu;
                 else
                     next_state <= death;
                 end if;
