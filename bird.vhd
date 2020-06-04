@@ -57,6 +57,7 @@ begin
 	
 		if(state = "000") then
 			ball_y_pos <= CONV_STD_LOGIC_VECTOR(320,10);
+			ground_on <= '1';
 		end if;
 	
 		if(state = "001" or state = "010" or state = "011") then

@@ -280,6 +280,74 @@ end process;
 					text_on_var := '0';
 				end if;
 				
+			elsif (state = "101") then
+				
+				--Paused
+				--P
+				if(pixel_col >= CONV_STD_LOGIC_VECTOR(224, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(256, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(223, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(255, 10)) then
+					v_font_row := pixel_row(4 downto 2);
+					v_font_col := pixel_col(4 downto 2);
+					v_character_address := CONV_STD_LOGIC_VECTOR(16, 6);
+					text_on_var := '1';
+					
+				--A
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(256, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(288, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(223, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(255, 10)) then
+					v_font_row := pixel_row(4 downto 2);
+					v_font_col := pixel_col(4 downto 2);
+					v_character_address := CONV_STD_LOGIC_VECTOR(1, 6);
+					text_on_var := '1';
+					
+				--U
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(288, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(320, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(223, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(255, 10)) then
+					v_font_row := pixel_row(4 downto 2);
+					v_font_col := pixel_col(4 downto 2);
+					v_character_address := CONV_STD_LOGIC_VECTOR(21, 6);
+					text_on_var := '1';
+					
+				--S
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(320, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(352, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(223, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(255, 10)) then
+					v_font_row := pixel_row(4 downto 2);
+					v_font_col := pixel_col(4 downto 2);
+					v_character_address := CONV_STD_LOGIC_VECTOR(19, 6);
+					text_on_var := '1';
+					
+				--E
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(352, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(384, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(223, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(255, 10)) then
+					v_font_row := pixel_row(4 downto 2);
+					v_font_col := pixel_col(4 downto 2);
+					v_character_address := CONV_STD_LOGIC_VECTOR(5, 6);
+					text_on_var := '1';
+				
+				--D
+				elsif(pixel_col >= CONV_STD_LOGIC_VECTOR(384, 10)) and
+					(pixel_col <= CONV_STD_LOGIC_VECTOR(416, 10)) and
+					(pixel_row >= CONV_STD_LOGIC_VECTOR(223, 10)) and
+					(pixel_row <= CONV_STD_LOGIC_VECTOR(255, 10)) then
+					v_font_row := pixel_row(4 downto 2);
+					v_font_col := pixel_col(4 downto 2);
+					v_character_address := CONV_STD_LOGIC_VECTOR(4, 6);
+					text_on_var := '1';
+					
+				else
+					v_character_address := CONV_STD_LOGIC_VECTOR(32,6);
+					text_on_var := '0';
+				end if;
+				
 				
 			--elsif (game = '1') then
 				else
