@@ -19,6 +19,7 @@ end entity lives_manager;
 
 architecture arch of lives_manager is
     signal lives: unsigned(1 downto 0);
+    signal bird_on_prev: std_logic;
 begin
     process (clk, reset, state, lives)
     begin
@@ -26,13 +27,14 @@ begin
             lives <= "11";
         elsif (rising_edge(clk)) then
             if (state = "001" or state = "010" or state = "011") then
-                if (ground_on = '1' and bird_on = '1') then
+                if (ground_on = '1' and bird_on = '1' and bird_on_prev = '0' or bird_on_prev = '1') then
                     lives <= "00";
-                elsif (pipe_on = '1' and bird_on = '1') then
+                elsif (pipe_on = '1' and bird_on = '1' and bird_on_prev = '0') then
                     lives <= lives - 1;
-                elsif (powerup_on = '1' and bird_on = '1') then
+                elsif (powerup_on = '1' and bird_on = '1' and bird_on_prev = '0') then
                     lives <= lives + 1;
                 end if;
+                bird_on_prev <= bird_on;
             end if;
         end if;
 
