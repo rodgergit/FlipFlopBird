@@ -743,7 +743,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 1184 480 1408 656)
+	(rect 1200 496 1424 672)
 	(text "power_up" (rect 5 0 51 12)(font "Arial" ))
 	(text "inst11" (rect 8 160 37 172)(font "Arial" ))
 	(port
@@ -1359,11 +1359,6 @@ applicable agreement for further details.
 	(pt 464 632)
 )
 (connector
-	(pt 624 632)
-	(pt 792 632)
-	(bus)
-)
-(connector
 	(text "pixel_row[9..0]" (rect 712 760 782 772)(font "Arial" ))
 	(pt 712 776)
 	(pt 760 776)
@@ -1558,8 +1553,60 @@ applicable agreement for further details.
 	(pt 872 200)
 )
 (connector
-	(text "powerup_on" (rect 1408 544 1465 556)(font "Arial" ))
-	(pt 1408 560)
-	(pt 1448 560)
+	(text "powerup_on" (rect 1424 560 1481 572)(font "Arial" ))
+	(pt 1424 576)
+	(pt 1464 576)
+)
+(connector
+	(text "clk0" (rect 1170 512 1190 524)(font "Arial" ))
+	(pt 1200 528)
+	(pt 1160 528)
+)
+(connector
+	(text "state_out[2..0]" (rect 1160 608 1231 620)(font "Arial" ))
+	(pt 1200 624)
+	(pt 1160 624)
+	(bus)
+)
+(connector
+	(text "score[8..0]" (rect 1160 576 1213 588)(font "Arial" ))
+	(pt 1200 592)
+	(pt 1160 592)
+	(bus)
+)
+(connector
+	(text "pixel_col[9..0]" (rect 1160 560 1228 572)(font "Arial" ))
+	(pt 1200 576)
+	(pt 1160 576)
+	(bus)
+)
+(connector
+	(text "pixel_row[9..0]" (rect 1152 544 1222 556)(font "Arial" ))
+	(pt 1160 560)
+	(pt 1200 560)
+	(bus)
+)
+(connector
+	(text "vert_sync" (rect 1160 528 1210 540)(font "Arial" ))
+	(pt 1160 544)
+	(pt 1200 544)
+)
+(connector
+	(text "rand_numb[2..0]" (rect 624 616 704 628)(font "Arial" ))
+	(pt 624 632)
+	(pt 664 632)
+	(bus)
+)
+(connector
+	(text "rand_numb[2..0]" (rect 746 616 826 628)(font "Arial" ))
+	(pt 792 632)
+	(pt 736 632)
+	(bus)
+)
+(connector
+	(text "rand_numb[2..0]" (rect 1160 592 1240 604)(font "Arial" ))
+	(pt 1200 608)
+	(pt 1160 608)
+	(bus)
 )
 (junction (pt 1104 408))
