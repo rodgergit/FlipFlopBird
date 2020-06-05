@@ -860,7 +860,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 192 448 408 592)
+	(rect 192 464 408 608)
 	(text "bird" (rect 5 0 22 12)(font "Arial" ))
 	(text "inst1" (rect 8 128 31 140)(font "Arial" ))
 	(port
@@ -909,14 +909,14 @@ applicable agreement for further details.
 		(pt 216 32)
 		(output)
 		(text "bird_on" (rect 0 0 35 12)(font "Arial" ))
-		(text "bird_on" (rect 166 27 195 39)(font "Arial" ))
+		(text "bird_on" (rect 166 27 201 39)(font "Arial" ))
 		(line (pt 216 32)(pt 200 32))
 	)
 	(port
 		(pt 216 48)
 		(output)
 		(text "ground_on" (rect 0 0 50 12)(font "Arial" ))
-		(text "ground_on" (rect 153 43 195 55)(font "Arial" ))
+		(text "ground_on" (rect 153 43 203 55)(font "Arial" ))
 		(line (pt 216 48)(pt 200 48))
 	)
 	(drawing
@@ -973,14 +973,14 @@ applicable agreement for further details.
 		(pt 224 32)
 		(output)
 		(text "pipe_on" (rect 0 0 37 12)(font "Arial" ))
-		(text "pipe_on" (rect 172 27 203 39)(font "Arial" ))
+		(text "pipe_on" (rect 172 27 209 39)(font "Arial" ))
 		(line (pt 224 32)(pt 208 32))
 	)
 	(port
 		(pt 224 48)
 		(output)
 		(text "pipe_passed" (rect 0 0 61 12)(font "Arial" ))
-		(text "pipe_passed" (rect 152 43 203 55)(font "Arial" ))
+		(text "pipe_passed" (rect 152 43 213 55)(font "Arial" ))
 		(line (pt 224 48)(pt 208 48))
 	)
 	(drawing
@@ -1498,49 +1498,6 @@ applicable agreement for further details.
 	(pt 872 200)
 )
 (connector
-	(text "state_out[2..0]" (rect 136 544 207 556)(font "Arial" ))
-	(pt 192 560)
-	(pt 136 560)
-	(bus)
-)
-(connector
-	(text "bird_on" (rect 418 464 453 476)(font "Arial" ))
-	(pt 408 480)
-	(pt 472 480)
-)
-(connector
-	(text "ground_on" (rect 418 480 468 492)(font "Arial" ))
-	(pt 408 496)
-	(pt 472 496)
-)
-(connector
-	(text "pixel_col[9..0]" (rect 130 528 198 540)(font "Arial" ))
-	(pt 136 544)
-	(pt 192 544)
-	(bus)
-)
-(connector
-	(text "pixel_row[9..0]" (rect 130 512 200 524)(font "Arial" ))
-	(pt 136 528)
-	(pt 192 528)
-	(bus)
-)
-(connector
-	(text "vert_sync" (rect 130 496 180 508)(font "Arial" ))
-	(pt 136 512)
-	(pt 192 512)
-)
-(connector
-	(text "clk0" (rect 170 480 190 492)(font "Arial" ))
-	(pt 136 496)
-	(pt 192 496)
-)
-(connector
-	(text "mouse1" (rect 160 464 198 476)(font "Arial" ))
-	(pt 136 480)
-	(pt 192 480)
-)
-(connector
 	(text "pipe_on" (rect 1018 552 1055 564)(font "Arial" ))
 	(pt 1072 568)
 	(pt 1016 568)
@@ -1549,5 +1506,48 @@ applicable agreement for further details.
 	(text "pipe_passed" (rect 1016 568 1077 580)(font "Arial" ))
 	(pt 1072 584)
 	(pt 1016 584)
+)
+(connector
+	(text "state_out[2..0]" (rect 136 560 207 572)(font "Arial" ))
+	(pt 192 576)
+	(pt 136 576)
+	(bus)
+)
+(connector
+	(text "bird_on" (rect 418 480 453 492)(font "Arial" ))
+	(pt 408 496)
+	(pt 472 496)
+)
+(connector
+	(text "ground_on" (rect 418 496 468 508)(font "Arial" ))
+	(pt 408 512)
+	(pt 472 512)
+)
+(connector
+	(text "pixel_col[9..0]" (rect 130 544 198 556)(font "Arial" ))
+	(pt 136 560)
+	(pt 192 560)
+	(bus)
+)
+(connector
+	(text "pixel_row[9..0]" (rect 130 528 200 540)(font "Arial" ))
+	(pt 136 544)
+	(pt 192 544)
+	(bus)
+)
+(connector
+	(text "vert_sync" (rect 130 512 180 524)(font "Arial" ))
+	(pt 136 528)
+	(pt 192 528)
+)
+(connector
+	(text "clk0" (rect 170 496 190 508)(font "Arial" ))
+	(pt 136 512)
+	(pt 192 512)
+)
+(connector
+	(text "mouse1" (rect 160 480 198 492)(font "Arial" ))
+	(pt 136 496)
+	(pt 192 496)
 )
 (junction (pt 1104 408))
